@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                       // Target latest JavaScript version
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // Include DOM libraries
+    "allowJs": false,                         // Don't allow JavaScript files
+    "skipLibCheck": true,                     // Skip type checking for libraries
+    "esModuleInterop": true,                  // Allows default imports from commonJS
+    "allowSyntheticDefaultImports": true,     // Enable default import syntax
+    "strict": true,                           // Enable all strict type-checking options
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names
+    "module": "ESNext",                       // Use ESNext for module syntax
+    "moduleResolution": "Node",               // Use Node module resolution
+    "resolveJsonModule": true,                // Allow importing JSON files
+    "isolatedModules": true,                  // Treat each file as a module
+    "noEmit": true,                           // Don’t emit output
+    "jsx": "react-jsx",                       // For React 17+ with new JSX transform (required for tsx)
+    "baseUrl": ".",                           // Set base directory for resolving modules
+    "paths": {                                // If using aliases, define paths here
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@hooks/*": ["src/hooks/*"]
+    }
+  },
+  "include": ["src"],                         // Include the source directory for TypeScript
+  "exclude": ["node_modules", "**/*.test.tsx", "jest.config.ts"]
+}
