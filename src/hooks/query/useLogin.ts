@@ -4,7 +4,7 @@ import { LoginData } from "../../types/loginTypes";
 
 const login = async (loginData: LoginData) => {
  try {
-  const response = await useAxiosInstance.post("/login", loginData);
+    const response = await useAxiosInstance.post('https://admin.grindatunet.no/wp-json/jwt-auth/v1/token', loginData);
   return response.data;
  } catch (error: any) {
   // Handle errors here
