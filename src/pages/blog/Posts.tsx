@@ -1,28 +1,55 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-import { Post as PostType } from "../../types/blogTypes";
-import Post from '../../components/posts/Post';
+import { CircularProgress, Container, List, ListItem, ListItemText, Paper, Typography } from "@mui/material";
+import { useFetchPosts } from "../../hooks/query/useFetchPosts";
 
 const Posts: React.FC = () => {
- const mockPost: PostType = {
-  id: "1",
-  title: "Sample Post",
-  heroImage: "https://via.placeholder.com/800x400",
-  images: ["https://via.placeholder.com/200", "https://via.placeholder.com/200"],
-  content: "This is a sample post content.",
-  tags: "#sample #post",
-  date: new Date().toISOString(),
-  author: "John Doe",
- };
+    const { data, error, isLoading } = useFetchPosts();
 
- return (
-  <Box sx={{ mt: 4, mx: "auto", maxWidth: 800 }}>
-   <Typography variant="h4" gutterBottom>
-    Blog Posts
-   </Typography>
-   <Post post={mockPost} />
-  </Box>
- );
-};
+    if (isLoading) {
+      return (
+        <Container>
+          <CircularProgress />
+          <Typography variant="h6" color="textSecondary" align="center">
+            Loading...
+          </Typography>
+        </Container>
+      );
+    }
+  
+    if (error instanceof Error) {
+      return (
+        <Container>
+          <Typography variant="h6" color="error" align="center">
+            Error: {error.message}
+          </Typography>
+        </Container>
+      );
+    }
+  
+    return (
+      <Container>
+        <Typography variant="h4" gutterBottom>
+          Posts
+        </Typography>
+        <Paper>
+          <List>
+            {data.map((post: any) => (
+              <ListItem key={post.id}>
+                <ListItemText
+                  primary={<Typography variant="h6">{post.title.rendered}</Typography>}
+                  secondary={
+                    <div
+                      dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+                      style={{ lineHeight: 1.5 }}
+                    />
+                  }
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
+      </Container>
+    );
+  };
 
 export default Posts;

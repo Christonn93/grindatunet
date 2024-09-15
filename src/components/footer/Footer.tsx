@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
      <Link component={RouterLink} to="/about" sx={{ mx: 2, color: "text.primary", textDecoration: "none" }}>
       About
      </Link>
-     <Link href="https://www.grindatunet.no/admin/wp-admin" sx={{ mx: 2, color: "text.primary", textDecoration: "none" }} target="_blank" rel="noopener noreferrer">
+     <Link href="https://www.grindatunet.no/admin/wp-admin.php" sx={{ mx: 2, color: "text.primary", textDecoration: "none" }} target="_blank" rel="noopener noreferrer">
       Admin
      </Link>
     </Box>
