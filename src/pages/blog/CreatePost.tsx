@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import PostForm from '../../components/posts/PostForm';
+import PostForm from '../../components/form/PostForm';
 
 const CreatePost: React.FC = () => {
   return (

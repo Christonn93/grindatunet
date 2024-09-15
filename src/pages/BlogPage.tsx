@@ -1,7 +1,7 @@
 // src/pages/BlogPage.tsx
 import React from 'react';
 import { Box } from '@mui/material';
-import PostForm from '../components/posts/PostForm';
+import PostForm from '../components/form/PostForm';
 import { Post as PostType } from '../types/blogTypes';
 import Post from '../components/posts/Post';
 
