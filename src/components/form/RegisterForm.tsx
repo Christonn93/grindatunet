@@ -45,10 +45,9 @@ const RegisterForm: React.FC = () => {
         type="submit"
         variant="contained"
         color="primary"
-        disabled={isLoading}
         fullWidth
       >
-        {isLoading ? 'Registering...' : 'Register'}
+        Register new user
       </Button>
       {isSuccess && <Typography color="success">Registration successful!</Typography>}
       {isError && <Typography color="error">{error?.message}</Typography>}
