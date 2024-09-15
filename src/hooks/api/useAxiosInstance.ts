@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance with default settings
 const useAxiosInstance = axios.create({
-  baseURL: 'https://admin.grindatunet.no/admin/wp-json/wp/v2/',
+  baseURL: 'https://admin.grindatunet.no/wp-json',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',

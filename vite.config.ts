@@ -7,9 +7,10 @@ export default defineConfig({
    base: '/',
    server: {
     proxy: {
-      '/admin': {
-        target: 'www.grindatunet.no/admin/wp-admin.php',
+      '/wp-json': {
+        target: 'https://admin.grindatunet.no',
         changeOrigin: true,
+        secure: false,
       },
     },
   },
