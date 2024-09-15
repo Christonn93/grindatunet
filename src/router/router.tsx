@@ -8,7 +8,6 @@ import InfoPage from '../pages/InfoPage';
 import RulesPage from '../pages/RulesPage';
 import FeedbackPage from '../pages/FeedbackPage';
 import BlogPage from '../pages/BlogPage';
-import AdminPage from '../pages/AdminPage';
 
 // Blog-related pages
 import CreatePost from '../pages/blog/CreatePost';
@@ -82,15 +81,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/admin",
-    element: (
-      <LayoutComponent>
-        <AdminPage />
-      </LayoutComponent>
-    ),
-  },
-  // Blog Subroutes
-  {
     path: "/blog/create",
     element: (
       <LayoutComponent>
@@ -114,7 +104,6 @@ const router = createBrowserRouter([
       </LayoutComponent>
     ),
   },
-  // Info Subroutes
   {
     path: "/info/about",
     element: (

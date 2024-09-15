@@ -9,7 +9,8 @@
   "lint": "eslint .",
   "preview": "vite preview",
   "postbuild": "cp dist/index.html dist/404.html", 
-  "deploy": "gh-pages -d dist" 
+  "deploy": "gh-pages -d dist",
+  "publish": "npm run build && npm run postbuild && npm run deploy"
  },
  "dependencies": {
   "@emotion/react": "^11.13.3",
