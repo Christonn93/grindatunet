@@ -4,7 +4,8 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAuthStore } from '../../store/authStore';
-import { createPost } from '../../mockdb/mockPosts'; 
+import { useCreatePost } from '../../hooks/query/useCreatePost';
+import { PostData } from 'src/types/createTypes';
 
 const validationSchema = Yup.object({
   title: Yup.string().required('Title is required'),
@@ -15,6 +16,7 @@ const validationSchema = Yup.object({
 
 const PostForm: React.FC = () => {
   const { user } = useAuthStore(state => state);
+  const { mutate, isLoading, isError, error } = useCreatePost();
 
   const formik = useFormik({
     initialValues: {
@@ -26,13 +28,17 @@ const PostForm: React.FC = () => {
     },
     validationSchema,
     onSubmit: async (values) => {
-      if (!user) return; // Check if user is logged in
+      console.log("Form submitted with values:", values); // Debugging line
 
-      // Convert File objects to URLs
+      if (!user) {
+        console.error("User is not authenticated.");
+        return; // Check if user is logged in
+      }
+
       const heroImageUrl = values.heroImage ? URL.createObjectURL(values.heroImage) : '';
       const imageUrls = values.images.map((file) => URL.createObjectURL(file));
 
-      const formData = {
+      const postData: PostData = {
         title: values.title,
         heroImage: heroImageUrl,
         images: imageUrls,
@@ -43,8 +49,8 @@ const PostForm: React.FC = () => {
       };
 
       try {
-        const newPost = await createPost(formData);
-
+        console.log("Posting data:", postData); // Debugging line
+        await mutate(postData); // Call the mutate function from useCreatePost
         alert('Post submitted successfully!');
         formik.resetForm();
       } catch (error) {
@@ -141,10 +147,11 @@ const PostForm: React.FC = () => {
         color="primary"
         fullWidth
         sx={{ mt: 2 }}
-        disabled={formik.isSubmitting}
+        disabled={isLoading} // Disable button while loading
       >
-        {formik.isSubmitting ? 'Submitting...' : 'Submit Post'}
+        {isLoading ? 'Submitting...' : 'Submit Post'}
       </Button>
+      {isError && <Typography color="error">{error?.message}</Typography>}
     </Box>
   );
 };
