@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
   validationSchema,
   onSubmit: async (values) => {
    try {
-    await login(values);
+    login(values);
    } catch (error) {
     console.error("Login error:", error);
     // If login fails, show registration prompt or handle accordingly
