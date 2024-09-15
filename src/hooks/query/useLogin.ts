@@ -1,23 +1,26 @@
-import useAxiosInstance from '../api/useAxiosInstance';
-import { useMutation } from '@tanstack/react-query';
-import { LoginData, LoginResponse } from '../../types/loginTypes';
+import useAxiosInstance from "../api/useAxiosInstance";
+import { useMutation } from "@tanstack/react-query";
+import { LoginData } from "../../types/loginTypes";
 
-
+const login = async (loginData: LoginData) => {
+ try {
+  const response = await useAxiosInstance.post("/login", loginData);
+  return response.data;
+ } catch (error: any) {
+  // Handle errors here
+  throw new Error(error.response?.data?.message || "Login failed");
+ }
+};
 
 export const useLogin = () => {
-  return useMutation<LoginResponse, Error, LoginData>({
-    mutationFn: async (loginData: LoginData) => {
-      const response = await useAxiosInstance.post('/login', loginData);
-      return response.data;
-    },
-    onError: (error) => {
-      console.error('Error logging in:', error);
-    },
-    onSuccess: (data) => {
-      console.log('Login successful:', data);
-      // Save the token and user data to localStorage or context
-      localStorage.setItem('authToken', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-    },
-  });
+ return useMutation({
+  mutationFn: login,
+  onError: (error: any) => {
+   console.error("Login error:", error.message);
+  },
+  onSuccess: (data) => {
+   console.log("Login successful:", data);
+   // Handle successful login here, e.g., store token, redirect user, etc.
+  },
+ });
 };
