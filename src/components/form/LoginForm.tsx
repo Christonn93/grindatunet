@@ -20,7 +20,8 @@ const LoginForm: React.FC = () => {
       });
       localStorage.setItem('authToken', response.data.token); // Save token
       window.location.href = '/home'; // Redirect after login
-    } catch (err: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error: unknown) {
       setError('Login failed. Please check your credentials.');
     } finally {
       setIsLoading(false);
