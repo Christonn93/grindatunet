@@ -125,7 +125,7 @@ const Navigation: React.FC = () => {
     variant="contained"
     sx={{
      mx: 2,
-     backgroundColor: "#f56203", // Custom color for the CTA
+     backgroundColor: "error.main", // Custom color for the CTA
      color: "white",
      fontWeight: "bold",
      fontSize: "1rem",

@@ -1,17 +1,35 @@
-import React from 'react';
-import { Box, Typography, Container } from '@mui/material';
-import PageContent from '../components/content/PageContent'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
+  const [content, setContent] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPageContent = async () => {
+      try {
+        const response = await axios.get('https://admin.grindatunet.no/wp-json/wp/v2/pages?slug=home');
+        if (response.data && response.data.length > 0) {
+          setContent(response.data[0].content.rendered);
+        } else {
+          setError('Page not found');
+        }
+      } catch (err: error) {
+        setError('Error fetching page content');
+      }
+    };
+
+    fetchPageContent();
+  }, []);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
-    <Container>
-      <Box sx={{ textAlign: 'center', mt: 8 }}>
-        <Typography variant="h4" gutterBottom>
-          Welcome to the Cabin Management System
-        </Typography>
-        <PageContent slug='home'/>
-      </Box>
-    </Container>
+    <div>
+      <div dangerouslySetInnerHTML={{ __html: content || '' }} />
+    </div>
   );
 };
 

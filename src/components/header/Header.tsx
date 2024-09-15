@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import logo from "../../assets/ng_logo.png";
 import Navigation from "../../components/navigation/Navigation";
@@ -20,6 +20,7 @@ const Header: React.FC = () => {
     <Link to="/home" style={{ textDecoration: "none", color: "inherit" }}>
      <img src={logo} alt="Logo" style={{ height: "40px", marginRight: "16px" }} />
     </Link>
+    <Typography variant="h2">Grinda Tunet</Typography>
    </Box>
    <Box
     sx={{
