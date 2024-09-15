@@ -47,8 +47,8 @@ const Posts: React.FC = () => {
      {data.map((post) => (
       <ListItem key={post.id}>
        <ListItemText
-        primary={<Typography variant="h6">{post?.title.rendered}</Typography>}
-        secondary={<div dangerouslySetInnerHTML={{ __html: post?.excerpt.rendered }} style={{ lineHeight: 1.5 }} />}
+        primary={<Typography variant="h6">{post.title}</Typography>}
+        secondary={<div dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} style={{ lineHeight: 1.5 }} />}
        />
       </ListItem>
      ))}

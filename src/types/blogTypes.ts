@@ -1,4 +1,5 @@
 export interface Post {
+    excerpt: any;
     id: string;
     title: string;
     heroImage: string;
