@@ -16,6 +16,7 @@ const BookingPage: React.FC = () => {
         } else {
           setError('Page not found');
         }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         setError('Error fetching page content');
       } finally {

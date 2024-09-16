@@ -2,12 +2,12 @@ import { createBrowserRouter } from 'react-router-dom';
 import LayoutComponent from '../components/layout/LayoutComponent';
 import LoginPage from '../pages/LoginPage';
 import HomePage from '../pages/HomePage';
-import BookingPage from '../pages/BookingPage';
-import PhotoPage from '../pages/PhotoPage';
-import InfoPage from '../pages/InfoPage';
-import RulesPage from '../pages/RulesPage';
-import FeedbackPage from '../pages/FeedbackPage';
-import BlogPage from '../pages/BlogPage';
+import BookingPage from '../pages/booking/BookingPage';
+import PhotoPage from '../pages/blog/PhotoPage';
+import InfoPage from '../pages/info/InfoPage';
+import RulesPage from '../pages/info/RulesPage';
+import FeedbackPage from '../pages/booking/FeedbackPage';
+import BlogPage from '../pages/blog/BlogPage';
 
 // Blog-related pages
 import CreatePost from '../pages/blog/CreatePost';
